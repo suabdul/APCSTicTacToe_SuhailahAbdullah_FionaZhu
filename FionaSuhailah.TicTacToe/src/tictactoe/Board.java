@@ -60,14 +60,27 @@ public class Board
     public void createRandomBoard()
     {
     	
+    	char[] options = {'E', 'X', 'O'};
+    	int len = options.length;
+    	char randomBoard[][] = new char[3][3];
+    	for(int row = 0; row < randomBoard.length; row++) 
+    	{
+    		char[] randomRow = {options[(int)Math.random()*len],
+    							options[(int)Math.random()*len],
+    							options[(int)Math.random()*len]};
+    		randomBoard[row] = randomRow;
+    	}
+    	this.grid = randomBoard;
+    	this.saveBoardToFile();
+    					
     }
     
     //clears the grid by placing E in every cell
     public void clearBoard()
     {
     	char clearedBoard[][] = {{'E', 'E', 'E'}, 
-    							{'E', 'E', 'E'}, 
-    							{'E', 'E', 'E'}};
+    							 {'E', 'E', 'E'}, 
+    							 {'E', 'E', 'E'}};
     	this.grid = clearedBoard;
     	this.saveBoardToFile();
     }

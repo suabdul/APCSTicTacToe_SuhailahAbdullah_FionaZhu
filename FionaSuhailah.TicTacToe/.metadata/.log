@@ -11,3 +11,8 @@ Command-line arguments:  -os macosx -ws cocoa -arch aarch64 -product org.eclipse
 
 !ENTRY ch.qos.logback.classic 1 0 2026-02-26 08:50:18.202
 !MESSAGE Logback config file: /Users/lankeyin/Documents/GitHub/APCSTicTacToe_SuhailahAbdullah_FionaZhu/FionaSuhailah.TicTacToe/.metadata/.plugins/org.eclipse.m2e.logback/logback.2.6.1.20240411-1122.xml
+
+!ENTRY org.eclipse.core.resources 2 2 2026-03-02 10:11:58.362
+!MESSAGE Save operation warnings.
+!SUBENTRY 1 org.eclipse.core.resources 2 234 2026-03-02 10:11:58.362
+!MESSAGE The project description file (.project) for 'src' was missing.  This file contains important information about the project.  A new project description file has been created, but some information about the project may have been lost.
