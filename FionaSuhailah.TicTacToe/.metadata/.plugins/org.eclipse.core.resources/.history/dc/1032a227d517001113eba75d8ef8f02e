@@ -30,9 +30,9 @@ public class Board {
 				String line = scanner.nextLine().trim();
 				String lineArray[] = line.split(",");
 
-				for (int i = 0; i < 3; i++) {
-					grid[row][i] = lineArray[i].trim().charAt(0);
-				}
+				this.grid[row][0] = lineArray[0].trim().charAt(0);
+				this.grid[row][1] = lineArray[1].trim().charAt(0);
+				this.grid[row][2] = lineArray[2].trim().charAt(0);
 
 				row++;
 			}
