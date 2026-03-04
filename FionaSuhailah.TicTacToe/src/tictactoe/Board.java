@@ -40,17 +40,38 @@ public class Board
     	{
     	File file = new File("src/tictactoe/"+this.filename);
     	Scanner scanner = new Scanner(file);
+    	int xCount = 0;
+    	int oCount = 0;
     	while(scanner.hasNextLine())
     	{
     		String line = scanner.nextLine().trim();
+    		//line = E, E, E or X, O, X
     		if(!line.matches("[EXO, [EXO], [EXO]"))
     		{
     			scanner.close();
     			return false;
     		}
+    		//count - modification
+    		//take the characters off and see what is at the position. if it is a particular character you update the count
+    		char first = line.charAt(0);
+    		if(first == 'X') xCount++;
+    		else if(first == 'O') oCount++;
+    		
+    		char second = line.charAt(2);
+    		if(second == 'X') xCount++;
+    		else if (second == 'O') oCount++;
+    		
+    		char third = line.charAt(4);
+    		if(third == 'X') xCount++;
+    		else if (third == 'O') oCount++;
+    		
+    		//position 0, 2, and 4, because charAt also counts the commas and those are at the odd positions and the values are at the even position
+    		
     	}
+ 		
     	scanner.close();
-    	return true;
+    	return (xCount == oCount || xCount == oCount + 1); //x has to be equal to o or x has to be equal to o plus one because we want x to go first
+    	
     }
     	catch(Exception error)
     	{
