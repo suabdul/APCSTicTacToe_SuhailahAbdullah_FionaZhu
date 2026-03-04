@@ -2,7 +2,7 @@
 <section name="Workbench">
 	<item key="org.eclipse.jdt.ui.last.selected.jre.kind2" value="2"/>
 	<item key="org.eclipse.jdt.ui.last.selected.execution.enviroment" value="JavaSE-1.8"/>
-	<item key="org.eclipse.jdt.ui.last.external.project" value="/Users/lankeyin/Documents/GitHub/APCSTicTacToe_SuhailahAbdullah_FionaZhu/FionaSuhailah.TicTacToe/src/tictactoe"/>
+	<item key="org.eclipse.jdt.ui.last.external.project" value="/Users/lankeyin/Documents/GitHub/APCSTicTacToe_SuhailahAbdullah_FionaZhu/FionaSuhailah.TicTacToe/src"/>
 	<section name="org.eclipse.jdt.internal.ui.packageview.PackageExplorerPart">
 		<item key="group_libraries" value="true"/>
 		<item key="layout" value="2"/>
@@ -22,5 +22,19 @@
 	<section name="quick_assist_proposal_size">
 	</section>
 	<section name="JavaElementSearchActions">
+	</section>
+	<section name="NewClassCreationWizard.dialogBounds">
+		<item key="DIALOG_X_ORIGIN" value="400"/>
+		<item key="DIALOG_Y_ORIGIN" value="-76"/>
+		<item key="DIALOG_WIDTH" value="586"/>
+		<item key="DIALOG_HEIGHT" value="650"/>
+		<item key="DIALOG_FONT_NAME" value="1|.AppleSystemUIFont|11.0|0|COCOA|1|.AppleSystemUIFont"/>
+	</section>
+	<section name="OptionalMessageDialog.hide.">
+		<item key="org.eclipse.jdt.ui.typecomment.deprecated" value="true"/>
+	</section>
+	<section name="NewClassWizardPage">
+		<item key="create_constructor" value="false"/>
+		<item key="create_unimplemented" value="true"/>
 	</section>
 </section>
