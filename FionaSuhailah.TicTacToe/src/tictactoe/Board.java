@@ -8,6 +8,7 @@ public class Board {
 	// holds game play data in an instance variable
 	private char[][] grid;
 
+
 	// holds game play data in a CSV file
 	private String filename;
 
@@ -21,6 +22,16 @@ public class Board {
 			this.grid = new char[3][3];
 			loadBoardFromFile();
 		}
+	}
+	
+	public char getCell(int row, int col)
+	{
+		return grid(row, col);
+	}
+	
+	public void setCell(int row, int col, char player)
+	{
+		this.grid = grid(row, col, player);
 	}
 
 	// loads the grid with the file contents - [5 points]
@@ -42,9 +53,12 @@ public class Board {
 				row++;
 			}
 			scanner.close();
-		} catch (Exception error) {
+		} catch (Exception error)
+		
+		{
 			error.printStackTrace();
 		}
+	}
 
 	
 
