@@ -33,7 +33,18 @@ public class Board {
 	{
 		grid[row][col] = player;
 	}
+	public char[][] getGrid(){
+		return this.grid;
+	}
 
+	public void setGrid(char[][] newGrid) {
+		this.grid = newGrid;
+	}
+	
+	
+	
+	
+	
 	// loads the grid with the file contents - [5 points]
 	public void loadBoardFromFile()
 	{
