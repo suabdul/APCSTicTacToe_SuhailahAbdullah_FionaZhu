@@ -43,7 +43,7 @@ public class Board {
 		}
 	}
 
-	}
+	
 
 	// valid if it resembles a 3x3 board that contains only E, X, O
 	public boolean isValidBoardFile() {
