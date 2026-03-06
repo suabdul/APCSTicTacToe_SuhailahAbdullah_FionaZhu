@@ -16,52 +16,63 @@ public class Board {
 		// set the file name
 		// if the board is valid then create the 3x3 grid
 		// and load the board from the file
-		this.filename = filename;
-		if (isValidBoardFile()) {
-			this.grid = new char[3][3];
-			loadBoardFromFile();
-		}
 	}
 
 	// loads the grid with the file contents - [5 points]
 	public void loadBoardFromFile() {
-
-		// Use a scanner to read the board file
-		// and populate the grid with the board values
-		// remember to close the scanner afterwards
-		// use isValidBoard method as a guide
 		try {
 			File file = new File("src/tictactoe/" + this.filename);
 			Scanner scanner = new Scanner(file);
+			this.grid = new char[3][3];
 			int row = 0;
+
 			while (scanner.hasNextLine()) {
 				String line = scanner.nextLine().trim();
-				grid[row][0] = line.charAt(0);
-				grid[row][1] = line.charAt(2);
-				grid[row][2] = line.charAt(4);
+				String lineArray[] = line.split(",");
+
+				for (int i = 0; i < 3; i++) {
+					grid[row][i] = lineArray[i].trim().charAt(0);
+				}
+
 				row++;
 			}
+
 			scanner.close();
 		} catch (Exception error) {
 			error.printStackTrace();
 		}
+	}
 
-	
+	}
 
 	// valid if it resembles a 3x3 board that contains only E, X, O
 	public boolean isValidBoardFile() {
 		try {
-			File file = new File("srs/tictactoe/" + this.filename);
+			File file = new File("src/tictactoe/" + this.filename);
 			Scanner scanner = new Scanner(file);
-			int xCount = 0, oCount = 0;
+			int xCount = 0;
+			int oCount = 0;
+
 			while (scanner.hasNextLine()) {
 				String line = scanner.nextLine().trim();
-				// line => E,E,E or X,O,X
-				if (!line.matches("[EXO], [EXO], [EXO]")) {
+				// line = E, E, E or X, O, X
+				if (!line.matches("[EXO, [EXO], [EXO]")) {
 					scanner.close();
 					return false;
 				}
-				// count
+				// count - modification
+				// take the characters off and see what is at the position. if it is a
+				// particular character you update the count
+
+				String lineArray[] = line.split(",");
+//    		
+//    		for(int i=0;i<3;i++) {
+//    			if(lineArray[i].equals("X"))
+//        			xCount++;
+//        		else if(lineArray[i].equals("O"))
+//        			oCount++;
+//    		}
+
 				char first = line.charAt(0);
 				if (first == 'X')
 					xCount++;
@@ -79,26 +90,31 @@ public class Board {
 					xCount++;
 				else if (third == 'O')
 					oCount++;
+
+				// position 0, 2, and 4, because charAt also counts the commas and those are at
+				// the odd positions and the values are at the even position
+
 			}
 
 			scanner.close();
-			return (xCount == oCount) || (xCount == oCount + 1);
-		}
+			return (xCount == oCount || xCount == oCount + 1); // x has to be equal to o or x has to be equal to o plus
+																// one because we want x to go first
 
-		catch (Exception error) {
+		} catch (Exception error) {
 			error.printStackTrace();
-			return false;
+
 		}
+		return false;
 	}
 
 	// saves the grid to the file in the proper format (CSV)
 	public void saveBoardToFile() {
 		try {
-			File file = new File("src/tictactoe/" + this.filename);
-			FileWriter writer = new FileWriter(file);
+			File file = new File("src/tictactoe" + this.filename);
+			FileWriter = new FileWriter(file);
 			String boardContents = "";
 			for (int row = 0; row < grid.length; row++) {
-				for (int col = 0; col < grid[0].length; col++) {
+				for (int col = 0; col < grid.length; col++) {
 					if (col < 2)
 						boardContents += grid[row][col] + ",";
 					else
@@ -107,11 +123,14 @@ public class Board {
 				}
 				if (row < 2)
 					boardContents += "\n";
+
 			}
 			writer.write(boardContents);
 			writer.close();
+
 		} catch (Exception error) {
 			error.printStackTrace();
+
 		}
 
 	}
@@ -123,28 +142,30 @@ public class Board {
 			for (int col = 0; col < grid[0].length; col++) {
 				System.out.print(grid[row][col] + " ");
 			}
-			System.out.println();
 		}
+		System.out.println();
+
 	}
 
 	// create a random board
 	public void createRandomBoard() {
+
 		char[] options = { 'E', 'X', 'O' };
 		int len = options.length;
 		char randomBoard[][] = new char[3][3];
 		for (int row = 0; row < randomBoard.length; row++) {
-			char[] randomRow = { options[(int) Math.random() * 3], options[(int) Math.random() * 3],
-					options[(int) Math.random() * 3], };
+			char[] randomRow = { options[(int) Math.random() * len], options[(int) Math.random() * len],
+					options[(int) Math.random() * len] };
 			randomBoard[row] = randomRow;
 		}
 		this.grid = randomBoard;
 		this.saveBoardToFile();
+
 	}
 
 	// clears the grid by placing E in every cell
 	public void clearBoard() {
 		char clearedBoard[][] = { { 'E', 'E', 'E' }, { 'E', 'E', 'E' }, { 'E', 'E', 'E' } };
-
 		this.grid = clearedBoard;
 		this.saveBoardToFile();
 	}
