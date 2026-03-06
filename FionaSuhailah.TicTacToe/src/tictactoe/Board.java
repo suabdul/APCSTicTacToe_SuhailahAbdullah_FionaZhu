@@ -26,7 +26,7 @@ public class Board {
 	
 	public char getCell(int row, int col)
 	{
-		return this.getCell(row, col);
+		return this.grid[row][col];
 	}
 	
 	public void setCell(int row, int col, char player)
