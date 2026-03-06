@@ -72,49 +72,34 @@ public class Board {
 		}
 	}
 
-	
 
 	// valid if it resembles a 3x3 board that contains only E, X, O
 	public boolean isValidBoardFile() {
-		try {
-			File file = new File("srs/tictactoe/" + this.filename);
-			Scanner scanner = new Scanner(file);
-			int xCount = 0, oCount = 0;
-			while (scanner.hasNextLine()) {
-				String line = scanner.nextLine().trim();
-				// line => E,E,E or X,O,X
-				if (!line.matches("[EXO], [EXO], [EXO]")) {
-					scanner.close();
-					return false;
-				}
-				// count
-				char first = line.charAt(0);
-				if (first == 'X')
-					xCount++;
-				else if (first == 'O')
-					oCount++;
+	    try {
+	        File file = new File("src/tictactoe/" + this.filename);
+	        Scanner scanner = new Scanner(file);
+	        int xCount = 0, oCount = 0;
+	        while (scanner.hasNextLine()) {
+	            String line = scanner.nextLine().trim();
+	            // flexible CSV: allow optional spaces
+	            if (!line.matches("[EXO]\\s*,\\s*[EXO]\\s*,\\s*[EXO]")) {
+	                scanner.close();
+	                return false;
+	            }
 
-				char second = line.charAt(2);
-				if (second == 'X')
-					xCount++;
-				else if (second == 'O')
-					oCount++;
+	            char[] cells = line.replace(" ", "").toCharArray();
+	            for (char c : cells) {
+	                if (c == 'X') xCount++;
+	                else if (c == 'O') oCount++;
+	            }
+	        }
 
-				char third = line.charAt(4);
-				if (third == 'X')
-					xCount++;
-				else if (third == 'O')
-					oCount++;
-			}
-
-			scanner.close();
-			return (xCount == oCount) || (xCount == oCount + 1);
-		}
-
-		catch (Exception error) {
-			error.printStackTrace();
-			return false;
-		}
+	        scanner.close();
+	        return (xCount == oCount) || (xCount == oCount + 1);
+	    } catch (Exception error) {
+	        error.printStackTrace();
+	        return false;
+	    }
 	}
 
 	// saves the grid to the file in the proper format (CSV)
@@ -169,7 +154,9 @@ public class Board {
 
 	// clears the grid by placing E in every cell
 	public void clearBoard() {
-		char clearedBoard[][] = { { 'E', 'E', 'E' }, { 'E', 'E', 'E' }, { 'E', 'E', 'E' } };
+		char clearedBoard[][] = {	{ 'E', 'E', 'E' },
+									{ 'E', 'E', 'E' },
+									{ 'E', 'E', 'E' } };
 
 		this.grid = clearedBoard;
 		this.saveBoardToFile();
@@ -178,11 +165,11 @@ public class Board {
 	public static void main(String args[]) {
 		Board b = new Board("board.csv");
 		System.out.println(b.isValidBoardFile());
-		b.createRandomBoard();
+		//b.createRandomBoard();
 		b.printGrid();
-		b.saveBoardToFile();
-		b.loadBoardFromFile();
-		System.out.println();
-		b.printGrid();
+		//b.saveBoardToFile();
+		//b.loadBoardFromFile();
+		//System.out.println();
+		//b.printGrid();
 	}
 }
