@@ -26,16 +26,17 @@ public class Board {
 	
 	public char getCell(int row, int col)
 	{
-		return grid(row, col);
+		return this.getCell(row, col);
 	}
 	
 	public void setCell(int row, int col, char player)
 	{
-		this.grid = grid(row, col, player);
+		grid[row][col] = player;
 	}
 
 	// loads the grid with the file contents - [5 points]
-	public void loadBoardFromFile() {
+	public void loadBoardFromFile()
+	{
 
 		// Use a scanner to read the board file
 		// and populate the grid with the board values
