@@ -13,7 +13,8 @@ public class Board {
 	private String filename;
 
 	// non-default constructor - [5 points]
-	public Board(String filename) {
+	public Board(String filename)
+	{
 		// set the file name
 		// if the board is valid then create the 3x3 grid
 		// and load the board from the file
