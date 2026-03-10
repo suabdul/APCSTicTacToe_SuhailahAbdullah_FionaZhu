@@ -141,18 +141,20 @@ public class Board {
 			for (int col = 0; col < grid[0].length; col++) {
 				System.out.print(grid[row][col] + " ");
 			}
-			System.out.println());
+			System.out.println();
 		}
 	}
 
 	// create a random board
-	public void createRandomBoard() {
+	public void createRandomBoard() 
+	{
 		char[] options = { 'E', 'X', 'O' };
 		int len = options.length;
 		char randomBoard[][] = new char[3][3];
 		for (int row = 0; row < randomBoard.length; row++) {
-			char[] randomRow = { options[(int) Math.random() * 3], options[(int) Math.random() * 3],
-					options[(int) Math.random() * 3], };
+			char[] randomRow = {options[(int) (Math.random() * len)],
+					options[(int) (Math.random() * len)],
+					options[(int) (Math.random() * len)], };
 			randomBoard[row] = randomRow;
 		}
 		this.grid = randomBoard;
@@ -169,11 +171,12 @@ public class Board {
 		this.saveBoardToFile();
 	}
 
-	public static void main(String args[]) {
+	public static void main(String args[])
+	{
 		Board b = new Board("board.csv");
-		System.out.println(b.isValidBoardFile());
-		//b.createRandomBoard();
+		b.createRandomBoard();
 		b.printGrid();
+		System.out.println(b.isValidBoardFile());
 		//b.saveBoardToFile();
 		//b.loadBoardFromFile();
 		//System.out.println();
