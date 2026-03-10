@@ -32,13 +32,19 @@ public class Board {
 	public void setCell(int row, int col, char player)
 	{
 		grid[row][col] = player;
+		 saveBoardToFile();   // update the file after changing one cell
 	}
+	
 	public char[][] getGrid(){
 		return this.grid;
 	}
 
-	public void setGrid(char[][] newGrid) {
+	public void setGrid(char[][] newGrid)
+	{
 		this.grid = newGrid;
+	    saveBoardToFile();   // update the file after replacing the grid
+		//if you make change to the grid, the board has to change
+		//the file has to be updated everytime you have to make a change 
 	}
 	
 	
@@ -134,7 +140,7 @@ public class Board {
 			for (int col = 0; col < grid[0].length; col++) {
 				System.out.print(grid[row][col] + " ");
 			}
-			System.out.println();
+			System.out.println());
 		}
 	}
 
