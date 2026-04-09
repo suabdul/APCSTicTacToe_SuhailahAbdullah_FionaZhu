@@ -53,7 +53,7 @@ public class GameLogic
 
 	    if (checkWin(board, 'X') || checkWin(board, 'O'))
 	    {
-	        return false; //if there is a winner, there's no draw
+	        return false; 
 	    }
 	    for (int row = 0; row < 3; row++)
 	    {
@@ -61,14 +61,24 @@ public class GameLogic
 	        {
 	            if (board.getCell(row, col) == 'E')
 	            {
-	                return false; // Found an empty cell, so not a draw
+	                return false; 
 	            }
 	        }
 	    }
-
-	    //no winner or empty cells is a draw
 	    return true;
 	}
+	
+	public boolean isGameOver(Board board) {
+		
+			return checkWin(board,'X') || checkWin(board,'O') || isDraw(board);
+				
+					
+	}
+
+	
+	
+	
+	
 }
 
 
