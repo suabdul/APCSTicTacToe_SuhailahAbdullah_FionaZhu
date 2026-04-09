@@ -48,8 +48,30 @@ public class GameLogic
 		
 	}
 	
+	public boolean isDraw(Board board)
+	{
 
+	    if (checkWin(board, 'X') || checkWin(board, 'O'))
+	    {
+	        return false; //if there is a winner, there's no draw
+	    }
+	    for (int row = 0; row < 3; row++)
+	    {
+	        for (int col = 0; col < 3; col++)
+	        {
+	            if (board.getCell(row, col) == 'E')
+	            {
+	                return false; // Found an empty cell, so not a draw
+	            }
+	        }
+	    }
+
+	    //no winner or empty cells is a draw
+	    return true;
+	}
 }
+
+
 
 
 
