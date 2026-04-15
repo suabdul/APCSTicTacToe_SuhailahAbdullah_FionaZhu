@@ -68,6 +68,25 @@ public class GameLogic
 	    return true;
 	}
 	
+	public boolean isGameOver(Board board)
+	{
+
+	    if (checkWin(board, 'X'))
+	        return true;
+
+	    if (checkWin(board, 'O'))
+	        return true;
+
+	    
+	    if (isDraw(board))
+	        return true;
+
+	
+	    return false;
+	}
+
+	
+	
 	//
 	public char getCurrentPlayer(Board board)
 	{
@@ -86,7 +105,7 @@ public class GameLogic
 
 	    if(x == o) return 'X';
 	    return 'O';
-	}
+	} 
 
 	
 	
