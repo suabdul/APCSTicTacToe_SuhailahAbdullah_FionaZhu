@@ -69,6 +69,30 @@ public class GameLogic
 	    //no winner or empty cells is a draw
 	    return true;
 	}
+	
+	//
+	public char getCurrentPlayer(Board board)
+	{
+
+	    int x = 0;
+	    int o = 0;
+
+	    for(int row = 0; row < 3; row++)
+	    {
+	        for(int col = 0; col < 3; col++)
+	        {
+	            if(board.getCell(row, col) == 'X') x++;
+	            if(board.getCell(row, col) == 'O') o++;
+	        }
+	    }
+
+	    if(x == o) return 'X';
+	    return 'O';
+	}
+	
+	
+	
+	
 }
 
 
