@@ -86,8 +86,6 @@ public class GameLogic
 	}
 
 	
-	
-	//
 	public char getCurrentPlayer(Board board)
 	{
 
@@ -108,7 +106,25 @@ public class GameLogic
 	} 
 
 	
-	
+	public boolean makeMove(Board board, int row, int col) 
+	{
+
+	    if (isGameOver(board)) 
+	    {
+	        return false;
+	    }
+	    if (row < 0 || row >= 3 || col < 0 || col >= 3) 
+	    {
+	        return false;
+	    }
+	    if (board.getCell(row, col) != 'E') 
+	    {
+	        return false;
+	    }
+	    char currentPlayer = getCurrentPlayer(board);
+	    board.setCell(row, col, currentPlayer);
+	    return true;
+	}
 	
 	
 }
