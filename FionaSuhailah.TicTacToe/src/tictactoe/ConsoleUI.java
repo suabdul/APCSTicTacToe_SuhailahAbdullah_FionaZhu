@@ -3,77 +3,103 @@ package tictactoe;
 import java.util.Scanner;
 
 public class ConsoleUI {
-	private static void printBoard(Board board) {
-		System.out.println();
-		System.out.println("Current board:");
-		for (int row = 0; row < 3; row++) {
-			for (int col = 0; col < 3; col++) {
-				char cell = board.getCell(row, col);
-				if (cell == 'E') {
-					cell = '-';
-				}
-				System.out.print(cell + " ");
-			}
-			System.out.println();
-		}
-		System.out.println();
-	}
 
-	private static int readCoordinate(Scanner input, String coordinateName) {
-		while (true) {
-			System.out.print("Enter " + coordinateName + " (0-2): ");
-			if (!input.hasNextInt()) {
-				System.out.println("Invalid input. Please enter a number from 0 to 2.");
-				input.next();
-				continue;
-			}
-
-			int value = input.nextInt();
-			if (value < 0 || value > 2) {
-				System.out.println("Out of range. Please enter 0, 1, or 2.");
-				continue;
-			}
-			return value;
-		}
-	}
-
-	public static void main(String[] args) {
+	public static void main(String[] args) 
+	{
 		Board board = new Board("board.csv");
-		GameLogic gameLogic = new GameLogic();
+		GameLogic logic = new GameLogic();
 		Scanner input = new Scanner(System.in);
 
-		if (board.getGrid() == null) {
-			System.out.println("Board file is missing or invalid. Fix board.csv and try again.");
-			input.close();
-			return;
-		}
+		board.clearBoard();
 
-		System.out.println("Tic-Tac-Toe Console");
-		System.out.println("Use row and column values from 0 to 2.");
+		System.out.println("=== Tic Tac Toe ===");
+		System.out.println("Enter row and column from 1 to 3.");
 
-		while (!gameLogic.isGameOver(board)) {
+		while (!logic.isGameOver(board)) 
+		{
 			printBoard(board);
-			char currentPlayer = gameLogic.getCurrentPlayer(board);
-			System.out.println("Player " + currentPlayer + "'s turn.");
 
-			int row = readCoordinate(input, "row");
-			int col = readCoordinate(input, "column");
+			char currentPlayer = logic.getCurrentPlayer(board);
+			System.out.println("Player " + currentPlayer + ", it's your turn.");
 
-			boolean moveMade = gameLogic.makeMove(board, row, col);
-			if (!moveMade) {
-				System.out.println("That move is not allowed. Try again.");
+			int row = promptForNumber(input, "Row (1-3): ", 1, 3) - 1;
+			int col = promptForNumber(input, "Col (1-3): ", 1, 3) - 1;
+
+			boolean moved = logic.makeMove(board, row, col);
+			if (!moved) 
+			{
+				System.out.println("Invalid move. Try again.");
 			}
 		}
 
 		printBoard(board);
-		if (gameLogic.checkWin(board, 'X')) {
-			System.out.println("Game over. Player X wins!");
-		} else if (gameLogic.checkWin(board, 'O')) {
-			System.out.println("Game over. Player O wins!");
-		} else {
-			System.out.println("Game over. It's a draw!");
+
+		if (logic.checkWin(board, 'X')) 
+		{
+			System.out.println("Player X wins!");
+		} 
+		else if (logic.checkWin(board, 'O')) 
+		{
+			System.out.println("Player O wins!");
+		} 
+		else 
+		{
+			System.out.println("It's a draw!");
 		}
 
 		input.close();
+	}
+
+	public static void printBoard(Board board) 
+	{
+		System.out.println();
+		for (int row = 0; row < 3; row++) 
+		{
+			for (int col = 0; col < 3; col++) 
+			{
+				char cell = board.getCell(row, col);
+				if (cell == 'E') 
+				{
+					System.out.print("-");
+				} else 
+				{
+					System.out.print(cell);
+				}
+
+				if (col < 2) 
+				{
+					System.out.print(" | ");
+				}
+			}
+			System.out.println();
+			if (row < 2) 
+			{
+				System.out.println("---------");
+			}
+		}
+		System.out.println();
+	}
+
+	public static int promptForNumber(Scanner input, String message, int min, int max) 
+	{
+		while (true) 
+		{
+			System.out.print(message);
+
+			if (!input.hasNextInt()) 
+			{
+				System.out.println("Please enter a whole number.");
+				input.next(); // discard invalid token
+				continue;
+			}
+
+			int value = input.nextInt();
+			if (value < min || value > max) 
+			{
+				System.out.println("Please enter a number between " + min + " and " + max + ".");
+			} else {
+				return value;
+			}
+		}
 	}
 }
