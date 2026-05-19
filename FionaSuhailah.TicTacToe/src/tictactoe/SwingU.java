@@ -66,7 +66,7 @@ public class SwingU extends JFrame {
             setContentPane(buildMenu());
         } else {
             initGame();
-        }
+        } 
 
         addFullscreenToggle();
         setVisible(true);
